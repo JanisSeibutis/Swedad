@@ -1,27 +1,34 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
+import axios from "axios"
+
+type Hello = {
+  id: number
+  name: string
+  created_at: Date
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState<Hello[]>([])
+
+  // useEffect(() => {
+  //   if (data.length > 0) return
+
+  //   const fetchData = async () => {
+  //     const response = await axios.get("http://localhost:3000/test")
+  //     setData(response.data)
+  //   }
+
+  //   fetchData()
+  // }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank"></a>
-        <a href="https://react.dev" target="_blank"></a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2>
+        {data.map((data) => (
+          <p key={data.id}>{data.name}</p>
+        ))}
+      </h2>
     </>
   )
 }
