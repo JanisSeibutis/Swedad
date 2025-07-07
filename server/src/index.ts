@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express"
 import pool from "../db"
 import cors from "cors"
+import { PrismaClient } from "./generated/prisma"
+const prisma = new PrismaClient()
 
 const app = express()
 app.use(cors())
@@ -10,15 +12,16 @@ app.get("/", (_, res: Response) => {
   res.send("Hello World")
 })
 
-app.get("/test", async (_: Request, res: Response) => {
-  try {
-    const result = await pool.query("SELECT * FROM test")
-    res.json(result.rows)
-  } catch (error) {
-    console.error(error)
-    res.status(500).send("Database error")
-  }
-})
+const testUser = async () => {
+  const users = await prisma.user.findMany()
+
+  await prisma.user.create({
+    data: {
+      name: "janis",
+      email: "janka_laika@testuser.com",
+    },
+  })
+}
 
 app.listen(PORT, () =>
   console.log(`Server is running at http://localhost: ${PORT}`)
