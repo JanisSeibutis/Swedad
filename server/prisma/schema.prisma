@@ -15,7 +15,60 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())  // Primary key, auto-incremented integer
-  name  String                                // A 'name' column of type string
-  email String @unique                        // A 'email' column of type string that must be unique
+  id         String   @id @default(uuid()) @db.Uuid
+  name       String
+  email      String   @unique
+  phone      String
+  role       String   @default("user")
+  ads        Ad[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Ad {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @db.Uuid
+  categoryId  String    @db.Uuid
+  regionId    String    @db.Uuid
+  title       String
+  description String
+  price       Int
+  location    String
+  images      Image[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category    Category  @relation(fields: [categoryId], references: [id])
+  region      Region    @relation(fields: [regionId], references: [id])
+}
+
+model Category {
+  id          String    @id @default(uuid()) @db.Uuid
+  name        String    @unique
+  ads         Ad[]
+}
+
+model Image {
+  id          String    @id @default(uuid()) @db.Uuid
+  url         String
+  adId        String    @db.Uuid
+
+  ad          Ad        @relation(fields: [adId], references: [id], onDelete: Cascade)
+}
+
+model Region {
+  id          String    @id @default(uuid()) @db.Uuid
+  name        String    @unique
+  ads         Ad[]
+}
+
+model UserToken {
+  id          String    @id @default(uuid()) @db.Uuid
+  token       String    @unique
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?
+  userId      String    @db.Uuid
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)        
 }
