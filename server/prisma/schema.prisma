@@ -16,12 +16,13 @@ datasource db {
 
 model User {
   id         String   @id @default(uuid()) @db.Uuid
-  username   String
+  username   String   @unique
+  password   String
   name       String
   lastname   String
   email      String   @unique
   phone      String
-  role       String   @default("user")
+  isAdmin    Boolean  @default(false)
   ads        Ad[]
   tokens     UserToken[]
   createdAt  DateTime @default(now())
