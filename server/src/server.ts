@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes"
 import imageRoutes from "./routes/imageRoutes"
 import regionRoutes from "./routes/regionRoutes"
 import userRoutes from "./routes/userRoutes"
+import errorHandler from "./middleware/errorHandler"
 const prisma = new PrismaClient()
 
 const app = express()
@@ -27,6 +28,7 @@ app.use("/categories", categoryRoutes)
 app.use("/images", imageRoutes)
 app.use("/regions", regionRoutes)
 app.use("/users", userRoutes)
+app.use(errorHandler)
 
 app.listen(PORT, () =>
   console.log(`Server is running at http://localhost: ${PORT}`)
