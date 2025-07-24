@@ -1,10 +1,34 @@
-import express from "express"
-import { register, login, logout } from "../controllers/authController"
+import express from "express";
+import { body } from "express-validator";
+import validate from "../middleware/validate";
+import { register, login, logout } from "../controllers/authController";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/register", register)
-router.post("/login", login)
-router.post("/logout", logout)
+router.post(
+  "/register",
+  [
+    body("username").isString().notEmpty(),
+    body("password").isString().isLength({ min: 6 }),
+    body("email").isEmail(),
+    body("name").isString().notEmpty(),
+    body("lastname").isString().notEmpty(),
+    body("phone").isString().notEmpty(),
+    validate,
+  ],
+  register
+);
 
-export default router
+router.post(
+  "/login",
+  [
+    body("username").isString().notEmpty(),
+    body("password").isString().notEmpty(),
+    validate,
+  ],
+  login
+);
+
+router.post("/logout", logout);
+
+export default router;
