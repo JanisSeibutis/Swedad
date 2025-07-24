@@ -1,4 +1,4 @@
-import { Request, Response } from "express"
+import { Request, Response, NextFunction } from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { PrismaClient } from "../generated/prisma"
@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 const JWT_SECRET = process.env.JWT_SECRET || "our-super-secret-key"
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response, next: NextFunction) => {
   const { username, password, name, lastname, email, phone } = req.body
   console.log("Register → Incoming body:", req.body)
 
@@ -36,12 +36,11 @@ export const register = async (req: Request, res: Response) => {
     res.status(201).json({ message: "User registered", user })
   } catch (err) {
     console.error("Register → Error:", err)
-    const message = err instanceof Error ? err.message : String(err)
-    res.status(500).json({ error: message || "Internal server error" })
+    next(err)
   }
 }
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body
   console.log("Login → Incoming body:", req.body)
 
@@ -77,12 +76,11 @@ export const login = async (req: Request, res: Response) => {
     res.json({ message: "Login successful", token, is_admin: user.isAdmin })
   } catch (err) {
     console.error("Login → Error:", err)
-    const message = err instanceof Error ? err.message : String(err)
-    res.status(500).json({ error: message || "Internal server error" })
+    next(err)
   }
 }
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(" ")[1]
 
   if (!token) {
@@ -95,6 +93,6 @@ export const logout = async (req: Request, res: Response) => {
     res.json({ message: "Logout successful" })
   } catch (err) {
     console.error("Logout → Error:", err)
-    res.status(500).json({ error: "Could not logout" })
+    next(err)
   }
 }
