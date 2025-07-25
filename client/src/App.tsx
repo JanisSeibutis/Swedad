@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react"
 import "./App.css"
 import axios from "axios"
-
-type Hello = {
-  id: number
-  name: string
-  created_at: Date
-}
+import { router } from "./Router"
+import { RouterProvider } from "react-router"
 
 function App() {
-  const [data, setData] = useState<Hello[]>([])
+  //   const [data, setData] = useState<Hello[]>([])
 
-  // useEffect(() => {
-  //   if (data.length > 0) return
+  //   useEffect(() => {
+  //     if (data.length > 0) return
 
-  //   const fetchData = async () => {
-  //     const response = await axios.get("http://localhost:3000/test")
-  //     setData(response.data)
-  //   }
+  //     const fetchData = async () => {
+  //       const response = await axios.get("http://localhost:3000/ads")
+  //       setData(response.data)
+  //     }
 
-  //   fetchData()
-  // }, [])
+  //     fetchData()
+  //   }, [])
 
   return (
     <>
-      <h2>
-        {data.map((data) => (
-          <p key={data.id}>{data.name}</p>
-        ))}
-      </h2>
+      <>
+        <RouterProvider router={router}></RouterProvider>
+      </>
     </>
   )
 }

@@ -24,10 +24,10 @@ app.use(express.json())
 
 app.use("/auth", authRoutes)
 app.use("/ads", adRoutes)
-app.use("/categories", categoryRoutes)
+app.use("/categorie", categoryRoutes)
 app.use("/images", imageRoutes)
-app.use("/regions", regionRoutes)
-app.use("/users", userRoutes)
+app.use("/region", regionRoutes)
+app.use("/user", userRoutes)
 app.use(errorHandler)
 
 app.listen(PORT, () =>
