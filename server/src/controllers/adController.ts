@@ -2,19 +2,45 @@ import { Request, Response, NextFunction } from "express"
 import { PrismaClient } from "../generated/prisma"
 const prisma = new PrismaClient()
 
-export const getAds = async (req: Request, res: Response, next: NextFunction) => {
+export const getAds = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const ads = await prisma.ad.findMany({ include: { images: true, category: true, region: true, user: true } })
+    const filters: any = {}
+
+    if (req.query.region) {
+      filters.regionId = req.query.region
+    }
+    if (req.query.category) {
+      filters.categoryId = req.query.category
+    }
+    if (req.query.userId) {
+      filters.userId = req.query.userId
+    }
+
+    const ads = await prisma.ad.findMany({
+      where: filters,
+      include: { images: true, category: true, region: true, user: true },
+    })
     res.json(ads)
   } catch (err) {
     next(err)
   }
 }
 
-export const getAdById = async (req: Request, res: Response, next: NextFunction) => {
+export const getAdById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   try {
-    const ad = await prisma.ad.findUnique({ where: { id }, include: { images: true, category: true, region: true, user: true } })
+    const ad = await prisma.ad.findUnique({
+      where: { id },
+      include: { images: true, category: true, region: true, user: true },
+    })
     if (!ad) return res.status(404).json({ error: "Ad not found" })
     res.json(ad)
   } catch (err) {
@@ -22,11 +48,24 @@ export const getAdById = async (req: Request, res: Response, next: NextFunction)
   }
 }
 
-export const createAd = async (req: Request, res: Response, next: NextFunction) => {
-  const { userId, categoryId, regionId, title, description, price, location } = req.body
+export const createAd = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { userId, categoryId, regionId, title, description, price, location } =
+    req.body
   try {
     const ad = await prisma.ad.create({
-      data: { userId, categoryId, regionId, title, description, price, location },
+      data: {
+        userId,
+        categoryId,
+        regionId,
+        title,
+        description,
+        price,
+        location,
+      },
     })
     res.status(201).json(ad)
   } catch (err) {
@@ -34,7 +73,11 @@ export const createAd = async (req: Request, res: Response, next: NextFunction) 
   }
 }
 
-export const updateAd = async (req: Request, res: Response, next: NextFunction) => {
+export const updateAd = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   const { title, description, price, location, categoryId, regionId } = req.body
   try {
@@ -48,7 +91,11 @@ export const updateAd = async (req: Request, res: Response, next: NextFunction) 
   }
 }
 
-export const deleteAd = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteAd = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   try {
     await prisma.ad.delete({ where: { id } })
@@ -56,4 +103,4 @@ export const deleteAd = async (req: Request, res: Response, next: NextFunction) 
   } catch (err) {
     next(err)
   }
-} 
+}
