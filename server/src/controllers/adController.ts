@@ -22,7 +22,12 @@ export const getAds = async (
 
     const ads = await prisma.ad.findMany({
       where: filters,
-      include: { images: true, category: true, region: true, user: true },
+      include: {
+        images: true,
+        category: { select: { name: true } },
+        region: { select: { name: true } },
+        user: { select: { username: true } },
+      },
     })
     res.json(ads)
   } catch (err) {
@@ -39,7 +44,12 @@ export const getAdById = async (
   try {
     const ad = await prisma.ad.findUnique({
       where: { id },
-      include: { images: true, category: true, region: true, user: true },
+      include: {
+        images: true,
+        category: { select: { name: true } },
+        region: { select: { name: true } },
+        user: { select: { username: true } },
+      },
     })
     if (!ad) return res.status(404).json({ error: "Ad not found" })
     res.json(ad)
