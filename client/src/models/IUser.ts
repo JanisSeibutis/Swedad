@@ -1,4 +1,6 @@
-export interface User {
+import type { IAd } from "./IAd"
+
+export interface IUser {
   id: string
   username: string
   password: string
@@ -9,6 +11,5 @@ export interface User {
   isAdmin: boolean
   createdAt: string // ISO date string
   updatedAt: string // ISO date string
-  ads?: Ad[] // optional to avoid deep nesting if you don't always fetch ads with user
-  tokens?: UserToken[]
+  ads?: IAd[] // optional to avoid deep nesting if you don't always fetch ads with user
 }

@@ -3,7 +3,7 @@ import type { IImage } from "./IImage"
 import type { IRegion } from "./IReagion"
 import type { IUser } from "./IUser"
 
-export interface IAd {
+export interface IAds {
   id: string
   userId: string
   categoryId: string
