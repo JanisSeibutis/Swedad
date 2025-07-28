@@ -1,26 +1,15 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link, useLoaderData } from "react-router"
+import type { AdsLoader } from "../loaders/adsLoader.ts"
+import type { IAd } from "../models/IAd.ts"
 
 export const Ads = () => {
-  const [ads, setAds] = useState([])
+  const { ads } = useLoaderData<AdsLoader>()
 
-  useEffect(() => {
-    if (ads.length > 0) return
-
-    const getData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/ads")
-
-        setAds(response.data)
-      } catch (err) {
-        console.error("Failed to fetch ads:", err)
-      }
-    }
-    getData()
-  })
+  const [adsInState, setAdsInState] = useState<IAd[]>(ads)
   return (
     <>
-      {ads.map((ad) => {
+      {adsInState.map((ad: IAd) => {
         return (
           <div key={ad.id}>
             <span>{ad.title}</span>
