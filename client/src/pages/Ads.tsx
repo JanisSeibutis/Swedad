@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link, useLoaderData } from "react-router"
 import type { AdsLoader } from "../loaders/adsLoader.ts"
 import type { IAd } from "../models/IAd.ts"
@@ -12,8 +12,10 @@ export const Ads = () => {
       {adsInState.map((ad: IAd) => {
         return (
           <div key={ad.id}>
-            <span>{ad.title}</span>
             <p>{ad.description}</p>
+            <Link to={`/ads/${ad.id}`}>
+              <span>{ad.title}</span>
+            </Link>
           </div>
         )
       })}
