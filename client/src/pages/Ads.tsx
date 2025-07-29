@@ -2,9 +2,12 @@ import { useState } from "react"
 import { Link, useLoaderData } from "react-router"
 import type { AdsLoader } from "../loaders/adsLoader.ts"
 import type { IAd } from "../models/IAd.ts"
+import { useFetchCategoriesReagions } from "../hooks/useFetchCategoriesReagions.tsx"
 
 export const Ads = () => {
   const { ads } = useLoaderData<AdsLoader>()
+  const { regions, categories } = useFetchCategoriesReagions()
+  console.log(regions, categories)
 
   const [adsInState, setAdsInState] = useState<IAd[]>(ads)
   return (
