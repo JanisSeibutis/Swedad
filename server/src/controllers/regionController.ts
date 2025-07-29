@@ -2,19 +2,30 @@ import { Request, Response, NextFunction } from "express"
 import { PrismaClient } from "../generated/prisma"
 const prisma = new PrismaClient()
 
-export const getRegions = async (req: Request, res: Response, next: NextFunction) => {
+export const getRegions = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const regions = await prisma.region.findMany({ include: { ads: true } })
+    const regions = await prisma.region.findMany()
     res.json(regions)
   } catch (err) {
     next(err)
   }
 }
 
-export const getRegionById = async (req: Request, res: Response, next: NextFunction) => {
+export const getRegionById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   try {
-    const region = await prisma.region.findUnique({ where: { id }, include: { ads: true } })
+    const region = await prisma.region.findUnique({
+      where: { id },
+      include: { ads: true },
+    })
     if (!region) return res.status(404).json({ error: "Region not found" })
     res.json(region)
   } catch (err) {
@@ -22,7 +33,11 @@ export const getRegionById = async (req: Request, res: Response, next: NextFunct
   }
 }
 
-export const createRegion = async (req: Request, res: Response, next: NextFunction) => {
+export const createRegion = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { name } = req.body
   try {
     const region = await prisma.region.create({ data: { name } })
@@ -32,7 +47,11 @@ export const createRegion = async (req: Request, res: Response, next: NextFuncti
   }
 }
 
-export const updateRegion = async (req: Request, res: Response, next: NextFunction) => {
+export const updateRegion = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   const { name } = req.body
   try {
@@ -43,7 +62,11 @@ export const updateRegion = async (req: Request, res: Response, next: NextFuncti
   }
 }
 
-export const deleteRegion = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteRegion = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   try {
     await prisma.region.delete({ where: { id } })
@@ -51,4 +74,4 @@ export const deleteRegion = async (req: Request, res: Response, next: NextFuncti
   } catch (err) {
     next(err)
   }
-} 
+}

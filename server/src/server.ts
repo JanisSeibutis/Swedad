@@ -24,7 +24,7 @@ app.use(express.json())
 
 app.use("/auth", authRoutes)
 app.use("/ads", adRoutes)
-app.use("/categorie", categoryRoutes)
+app.use("/category", categoryRoutes)
 app.use("/images", imageRoutes)
 app.use("/region", regionRoutes)
 app.use("/user", userRoutes)
