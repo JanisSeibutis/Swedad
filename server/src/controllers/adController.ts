@@ -63,19 +63,11 @@ export const createAd = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { userId, categoryId, regionId, title, description, price, location } =
-    req.body
+  const data = req.body
+  data.price = Number(data.price)
   try {
     const ad = await prisma.ad.create({
-      data: {
-        userId,
-        categoryId,
-        regionId,
-        title,
-        description,
-        price,
-        location,
-      },
+      data,
     })
     res.status(201).json(ad)
   } catch (err) {
@@ -89,11 +81,12 @@ export const updateAd = async (
   next: NextFunction
 ) => {
   const { id } = req.params
-  const { title, description, price, location, categoryId, regionId } = req.body
+  const data = req.body
+  data.price = Number(data.price)
   try {
     const ad = await prisma.ad.update({
       where: { id },
-      data: { title, description, price, location, categoryId, regionId },
+      data,
     })
     res.json(ad)
   } catch (err) {
