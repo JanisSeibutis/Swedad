@@ -16,6 +16,9 @@ export const getAds = async (
     if (req.query.category) {
       filters.categoryId = req.query.category
     }
+    if (req.query.subcategory) {
+      filters.subcategoryId = req.query.subcategory
+    }
     if (req.query.userId) {
       filters.userId = req.query.userId
     }
@@ -25,6 +28,7 @@ export const getAds = async (
       include: {
         images: true,
         category: { select: { name: true } },
+        subcategory: { select: { name: true } },
         region: { select: { name: true } },
         user: { select: { username: true } },
       },
@@ -47,6 +51,7 @@ export const getAdById = async (
       include: {
         images: true,
         category: { select: { name: true } },
+        subcategory: { select: { name: true } },
         region: { select: { name: true } },
         user: { select: { username: true } },
       },
