@@ -2,10 +2,12 @@ import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useFetchCategoriesReagions } from "../../hooks/useFetchCategoriesReagions"
 import "./CreateAd.css"
 import { SubmitAd } from "../../utils/submitAd"
+import type { IFormData } from "../../models/IFormData"
 
 export const CreateAd = () => {
-  const { categories, regions, loading, error } = useFetchCategoriesReagions()
-  const [formData, setFormData] = useState({
+  const { categories, subCategories, regions, loading, error } =
+    useFetchCategoriesReagions()
+  const [formData, setFormData] = useState<IFormData>({
     userId: "85bc4a85-1a1e-4197-8de2-f98b46ebe4e0",
     title: "",
     description: "",
@@ -13,6 +15,7 @@ export const CreateAd = () => {
     location: "",
     regionId: "",
     categoryId: "",
+    subCategoryId: "",
   })
 
   const handleEvent = (
@@ -73,13 +76,15 @@ export const CreateAd = () => {
           <option value="" disabled>
             Välj en region
           </option>
-          {regions.map((r) => {
-            return (
-              <option key={r.id} value={r.id}>
-                {r.name}
-              </option>
-            )
-          })}
+          {[...regions]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((r) => {
+              return (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              )
+            })}
         </select>
 
         <label htmlFor="categoryId">Välj kategori</label>
@@ -92,13 +97,36 @@ export const CreateAd = () => {
           <option value="" disabled>
             Välj ett kategori
           </option>
-          {categories.map((c) => {
-            return (
-              <option key={c.id} value={c.id}>
-                {c.name}
-              </option>
-            )
-          })}
+          {[...categories]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((c) => {
+              return (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              )
+            })}
+        </select>
+
+        <label htmlFor="subCategoryId">Välj underkategori</label>
+        <select
+          name="subCategoryId"
+          value={formData.subCategoryId}
+          onChange={handleEvent}
+          required
+        >
+          <option value="" disabled>
+            Välj ett underkategori
+          </option>
+          {[...subCategories]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((c) => {
+              return (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              )
+            })}
         </select>
 
         <input type="file" name="images" multiple accept="image/*" />

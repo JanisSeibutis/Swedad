@@ -5,6 +5,7 @@ import { PrismaClient } from "./generated/prisma"
 import authRoutes from "./routes/authRoutes"
 import adRoutes from "./routes/adRoutes"
 import categoryRoutes from "./routes/categoryRoutes"
+import subCategoryRoutes from "./routes/subCategoryRoutes"
 import imageRoutes from "./routes/imageRoutes"
 import regionRoutes from "./routes/regionRoutes"
 import userRoutes from "./routes/userRoutes"
@@ -25,6 +26,7 @@ app.use(express.json())
 app.use("/auth", authRoutes)
 app.use("/ads", adRoutes)
 app.use("/category", categoryRoutes)
+app.use("/subcategory", subCategoryRoutes)
 app.use("/images", imageRoutes)
 app.use("/region", regionRoutes)
 app.use("/user", userRoutes)
