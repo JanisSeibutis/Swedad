@@ -30,23 +30,25 @@ model User {
 }
 
 model Ad {
-  id            String        @id @default(uuid()) @db.Uuid
-  userId        String        @db.Uuid
-  categoryId    String        @db.Uuid
-  subcategoryId String        @db.Uuid
-  regionId      String        @db.Uuid
-  title         String
-  description   String
-  price         Int
-  location      String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id               String           @id @default(uuid()) @db.Uuid
+  userId           String           @db.Uuid
+  categoryId       String           @db.Uuid
+  subcategoryId    String           @db.Uuid
+  subSubcategoryId String?          @db.Uuid
+  regionId         String           @db.Uuid
+  title            String
+  description      String
+  price            Int
+  location         String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
 
-  category      Category      @relation(fields: [categoryId], references: [id])
-  subcategory   Subcategory   @relation(fields: [subcategoryId], references: [id])
-  region        Region        @relation(fields: [regionId], references: [id])
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  images        Image[]
+  category         Category         @relation(fields: [categoryId], references: [id])
+  subcategory      Subcategory      @relation(fields: [subcategoryId], references: [id])
+  subSubcategory   SubSubcategory?  @relation(fields: [subSubcategoryId], references: [id])
+  region           Region           @relation(fields: [regionId], references: [id])
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images           Image[]
 
   @@unique([title, userId])
 }
@@ -59,13 +61,24 @@ model Category {
 }
 
 model Subcategory {
-  id         String    @id @default(uuid()) @db.Uuid
-  name       String
-  categoryId String    @db.Uuid
-  category   Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  ads        Ad[]
+  id             String           @id @default(uuid()) @db.Uuid
+  name           String
+  categoryId     String           @db.Uuid
+  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  ads            Ad[]
+  subSubcategories SubSubcategory[]
 
   @@unique([name, categoryId])
+}
+
+model SubSubcategory {
+  id           String      @id @default(uuid()) @db.Uuid
+  name         String
+  subcategoryId String     @db.Uuid
+  subcategory  Subcategory @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
+  ads          Ad[]
+
+  @@unique([name, subcategoryId])
 }
 
 model Image {

@@ -10,6 +10,7 @@ import imageRoutes from "./routes/imageRoutes"
 import regionRoutes from "./routes/regionRoutes"
 import userRoutes from "./routes/userRoutes"
 import errorHandler from "./middleware/errorHandler"
+import subSubcategoryRoutes from "./routes/subSubcategoryRoutes"
 const prisma = new PrismaClient()
 
 const app = express()
@@ -30,6 +31,7 @@ app.use("/subcategory", subCategoryRoutes)
 app.use("/images", imageRoutes)
 app.use("/region", regionRoutes)
 app.use("/user", userRoutes)
+app.use("/subsubcategories", subSubcategoryRoutes)
 app.use(errorHandler)
 
 app.listen(PORT, () =>
