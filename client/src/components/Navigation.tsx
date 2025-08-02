@@ -1,7 +1,12 @@
+import { Logo } from "./Logo"
+import { NavCategoryList } from "./NavCategoryList"
+import "./Navigation.css"
+
 export const Navigation = () => {
   return (
-    <>
-      <h2>Navigation</h2>
-    </>
+    <header>
+      <Logo />
+      <NavCategoryList />
+    </header>
   )
 }
