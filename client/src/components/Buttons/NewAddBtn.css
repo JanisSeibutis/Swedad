@@ -1,0 +1,36 @@
+.custom-button {
+  background-color: #0071eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  height: 2.25rem;
+}
+
+.custom-button:hover {
+  background-color: #0093ff;
+}
+
+.custom-button:active {
+  background-color: #163fb9;
+}
+
+.custom-button .icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid white;
+  border-radius: 50%;
+  font-weight: 200;
+  font-size: 1.25rem;
+  line-height: 1;
+}
