@@ -6,4 +6,5 @@ export interface ICategory {
   name: string
   subCategories: ISubCategory[]
   ads?: IAd[]
+  special?: boolean
 }
