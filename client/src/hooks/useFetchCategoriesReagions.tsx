@@ -48,8 +48,12 @@ export const useFetchCategoriesReagions = () => {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    if (categories.length > 0 || regions.length > 0 || subCategories.length > 0)
-      return
+    const shouldFetch =
+      categories.length === 0 ||
+      subCategories.length === 0 ||
+      regions.length === 0
+
+    if (!shouldFetch || hasFetched) return
 
     const getData = async () => {
       setLoading(true)
@@ -86,7 +90,7 @@ export const useFetchCategoriesReagions = () => {
     if (hasFetched) return
 
     getData()
-  })
+  }, [categories, subCategories, regions, hasFetched])
 
   return { categories, subCategories, regions, loading, error }
 }
