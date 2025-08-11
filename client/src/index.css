@@ -14,11 +14,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: black;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: black;
+  text-decoration: underline;
 }
 
 body {
@@ -28,12 +29,17 @@ body {
   min-width: 320px;
   width: 100vw;
   min-height: 100vh;
-  font-family: "Google Sans Code", sans-serif;
+  /* font-family: "Google Mo", sans-serif; */
+  background-color: white;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+ul {
+  padding: 0;
 }
 
 button {
@@ -48,9 +54,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
