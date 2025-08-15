@@ -1,0 +1,22 @@
+.nav-icon-wrap {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.iconbar-wrap {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0.5rem;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.685rem;
+  font-weight: 400;
+  color: #767473;
+  width: fit-content;
+  padding: 0 0.5rem;
+}
