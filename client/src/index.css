@@ -2,14 +2,33 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  height: 100%;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  min-width: 320px;
+  width: 100vw;
+  height: 100%;
+  background-color: white;
+}
+
+main {
+  background-color: rgb(246, 244, 243);
+  flex: 1;
+}
+
+footer {
+  height: auto;
 }
 
 a {
@@ -22,20 +41,13 @@ a:hover {
   text-decoration: underline;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  width: 100vw;
-  min-height: 100vh;
-  /* font-family: "Google Mo", sans-serif; */
-  background-color: white;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h3 {
+  margin: 0;
 }
 
 ul {

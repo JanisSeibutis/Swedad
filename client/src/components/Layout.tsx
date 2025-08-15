@@ -5,9 +5,15 @@ import { Main } from "./MainContent"
 export const Layout = () => {
   return (
     <>
-      <Navigation />
-      <Main />
-      <Footer />
+      <header>
+        <Navigation />
+      </header>
+      <main>
+        <Main />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }
