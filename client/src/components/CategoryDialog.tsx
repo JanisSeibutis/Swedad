@@ -1,10 +1,16 @@
 import { DialogContext } from "../contexts/DialogContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useFetchCategoriesReagions } from "../hooks/useFetchCategoriesReagions"
+import { useLocation } from "react-router"
 
 export const CategoryDialog = () => {
   const { isOpen, setIsOpen } = useContext(DialogContext)
   const { categories, subCategories } = useFetchCategoriesReagions()
+  const location = useLocation()
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location, setIsOpen])
 
   const allItems = [...categories]
 
