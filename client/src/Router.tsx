@@ -8,6 +8,7 @@ import { User } from "./pages/User"
 import { Ad } from "./pages/Ad"
 import { adsLoader } from "./loaders/adsLoader"
 import { adLoader } from "./loaders/adLoader"
+import { CreateAd } from "./pages/CreateAd"
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/ads",
         children: [
+          {
+            path: "create-ad",
+            element: <CreateAd />,
+          },
           {
             path: "",
             loader: adsLoader,

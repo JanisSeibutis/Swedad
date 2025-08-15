@@ -2,7 +2,7 @@ export const Logo = () => {
   return (
     <>
       <div className="logo-wrap">
-        <a href="/">swedad</a>
+        <a href="/">blocket</a>
       </div>
     </>
   )
