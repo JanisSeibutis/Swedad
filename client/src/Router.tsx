@@ -8,7 +8,7 @@ import { User } from "./pages/User"
 import { Ad } from "./pages/Ad"
 import { adsLoader } from "./loaders/adsLoader"
 import { adLoader } from "./loaders/adLoader"
-import { CreateAd } from "./pages/CreateAd"
+import { CreateAd } from "./pages/CreateAd/CreateAd"
 
 export const router = createBrowserRouter([
   {
