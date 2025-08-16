@@ -17,7 +17,7 @@ export const CategoryDialog = () => {
   const col1 = [
     {
       id: "special-alla-annonser",
-      name: "Alla annonser på Blocket",
+      name: "Alla annonser på Swedad",
       special: true,
     },
     ...allItems.slice(0, 1),
