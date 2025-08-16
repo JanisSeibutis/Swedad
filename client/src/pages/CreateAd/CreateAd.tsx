@@ -1,10 +1,17 @@
 import type { ReactNode } from "react"
 import { ForetagsInfo } from "../../components/Icons/ForetagsInfo"
-import { ForHemmet } from "../../components/Icons/ForHemmet"
 import "./CreateAd.css"
+import ForHemmetIcon from "../../assets/images/sofa.png"
+import FritidIcon from "../../assets/images/hobby.png"
+import ElektronikIcon from "../../assets/images/arcade.png"
+import PersonligtIcon from "../../assets/images/backpack.png"
+import OvrigtIcon from "../../assets/images/box.png"
+import FordonIcon from "../../assets/images/car.png"
+import BostadIcon from "../../assets/images/house.png"
+import AffarsverksamhetIcon from "../../assets/images/store.png"
 
 type Card = {
-  svg: ReactNode
+  imageSrc: string
   text: string
   priceText?: string
   price?: number
@@ -15,43 +22,43 @@ type Card = {
 export const CreateAd = () => {
   const cards: Card[] = [
     {
-      svg: <ForHemmet />,
+      imageSrc: ForHemmetIcon,
       text: "För hemmet",
       price: 0,
       currency: "kr",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: FritidIcon,
       text: "Fritid & hobby",
       price: 0,
       currency: "kr",
       subtext: "T.ex. elcyklar, djur, musik- eller sportutrustning",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: ElektronikIcon,
       text: "Elektronik",
       price: 0,
       currency: "kr",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: PersonligtIcon,
       text: "Personligt",
       subtext: "T.ex. kläder, skor, barnmöbler eller leksaker",
       price: 0,
       currency: "kr",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: OvrigtIcon,
       text: "Övrigt",
       price: 0,
       currency: "kr",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: FordonIcon,
       text: "Fordon",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: BostadIcon,
       text: "Bostad",
       subtext: "T.ex. lägenheter, utlandsboende eller fritidsboende",
       priceText: "från",
@@ -59,7 +66,7 @@ export const CreateAd = () => {
       currency: "kr",
     },
     {
-      svg: <ForHemmet />,
+      imageSrc: AffarsverksamhetIcon,
       text: "Affärsverksamhet (företag)",
       subtext: "T.ex. inventarier, maskiner, lokaler eller tjänster",
     },
@@ -80,9 +87,11 @@ export const CreateAd = () => {
           return (
             <a className="list-card" key={i}>
               <div className="listcard-icon">
-                <span>
-                  <ForHemmet />
-                </span>
+                <img
+                  className="listcard-img"
+                  src={card.imageSrc}
+                  alt={card.text}
+                ></img>
               </div>
               <div className="listcard-text">
                 <div className="listcard-category">{card.text}</div>
