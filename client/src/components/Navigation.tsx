@@ -4,14 +4,25 @@ import "./Navigation.css"
 import "./Buttons/NewAddBtn"
 import { NewAddBtn } from "./Buttons/NewAddBtn"
 import { Iconbar } from "./Icons/Iconbar"
+import { CloseNewAds } from "./Buttons/CloseNewAds"
+
+import { useLocation } from "react-router"
 
 export const Navigation = () => {
+  const location = useLocation()
+
+  const showNavElements = location.pathname == "/ads/create-ad"
   return (
-    <div className="header-wrap">
+    <div className={`header-wrap ${showNavElements ? "newads-open" : ""}`}>
       <Logo />
-      <NavCategoryList />
-      <NewAddBtn />
-      <Iconbar />
+      {!showNavElements && (
+        <>
+          <NavCategoryList />
+          <NewAddBtn />
+          <Iconbar />
+        </>
+      )}
+      {showNavElements && <CloseNewAds />}
     </div>
   )
 }
