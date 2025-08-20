@@ -1,5 +1,9 @@
-import { CreateAdForm } from "../components/Forms/CreateAdForm"
+import { SearchAdsForm } from "../components/Forms/SearchAdsForm"
 
 export const Home = () => {
-  return <>{/* <CreateAd /> */}</>
+  return (
+    <>
+      <SearchAdsForm />
+    </>
+  )
 }
