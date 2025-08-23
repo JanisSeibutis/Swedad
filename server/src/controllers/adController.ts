@@ -7,10 +7,11 @@ export const getAds = async (
   res: Response,
   next: NextFunction
 ) => {
+  const defaultRegionId = process.env.DEFAULT_REGION_ID
   try {
     const filters: any = {}
 
-    if (req.query.region) {
+    if (req.query.region && req.query.region !== defaultRegionId) {
       filters.regionId = req.query.region
     }
     if (req.query.category) {
