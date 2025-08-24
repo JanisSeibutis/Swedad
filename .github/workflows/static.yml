@@ -44,7 +44,7 @@ jobs:
         run: npm run build
         working-directory: ./client
 
-      - name: Debug: Show dist contents
+      - name: "Debug: Show dist contents"
         run: ls -R ./client/dist
 
       - name: Setup Pages
