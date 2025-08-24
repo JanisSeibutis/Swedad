@@ -5,8 +5,7 @@ import { SubmitAd } from "../../utils/submitAd"
 import type { IFormData } from "../../models/IFormData"
 
 export const CreateAdForm = () => {
-  const { categories, subCategories, regions, loading, error } =
-    useFetchCategoriesReagions()
+  const { categories, subCategories, regions } = useFetchCategoriesReagions()
   const [formData, setFormData] = useState<IFormData>({
     userId: "85bc4a85-1a1e-4197-8de2-f98b46ebe4e0",
     title: "",

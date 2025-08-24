@@ -9,7 +9,7 @@ export const Ads = () => {
   const { regions, categories } = useFetchCategoriesReagions()
   console.log(regions, categories)
 
-  const [adsInState, setAdsInState] = useState<IAd[]>(ads)
+  const [adsInState, _setAdsInState] = useState<IAd[]>(ads)
   return (
     <>
       {adsInState.map((ad: IAd) => {
