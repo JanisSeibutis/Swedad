@@ -135,3 +135,9 @@ dialog {
   color: #767473;
   font-weight: 300;
 }
+
+@media (min-width: 992px) {
+  .header-wrap {
+    padding: 0;
+  }
+}
