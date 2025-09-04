@@ -90,7 +90,7 @@ export const useFetchCategoriesReagions = () => {
     if (hasFetched) return
 
     getData()
-  }, [categories, subCategories, regions, hasFetched])
+  }, [hasFetched])
 
   return { categories, subCategories, regions, loading, error }
 }

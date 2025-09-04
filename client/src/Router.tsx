@@ -34,17 +34,22 @@ export const router = createBrowserRouter(
           ],
         },
         {
-          path: "/ads",
+          path: "ads",
           children: [
             {
               path: "create-ad",
               element: <CreateAd />,
             },
             {
-              path: "",
+              path: ":region/:category?",
               loader: adsLoader,
               element: <Ads />,
             },
+          ],
+        },
+        {
+          path: "ad",
+          children: [
             {
               path: ":id",
               loader: adLoader,
