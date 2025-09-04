@@ -34,7 +34,7 @@ export const router = createBrowserRouter(
           ],
         },
         {
-          path: "ads",
+          path: "annonser",
           children: [
             {
               path: "create-ad",
@@ -48,7 +48,7 @@ export const router = createBrowserRouter(
           ],
         },
         {
-          path: "ad",
+          path: "annons",
           children: [
             {
               path: ":id",

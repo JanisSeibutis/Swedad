@@ -16,7 +16,7 @@ export const Ads = () => {
         return (
           <div key={ad.id}>
             <p>{ad.description}</p>
-            <Link to={`/ads/${ad.id}`}>
+            <Link to={`/annons/${ad.id}`}>
               <span>{ad.title}</span>
             </Link>
           </div>

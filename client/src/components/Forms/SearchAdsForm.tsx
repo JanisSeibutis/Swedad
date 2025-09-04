@@ -23,8 +23,8 @@ export const SearchAdsForm = () => {
     const regionSlug = slugify(region.name)
 
     const path = search
-      ? `/ads/${regionSlug}?searchText=${encodeURIComponent(search)}`
-      : `/ads/${regionSlug}`
+      ? `/annonser/${regionSlug}?searchText=${encodeURIComponent(search)}`
+      : `/annonser/${regionSlug}`
 
     navigate(path)
   }
