@@ -1,11 +1,11 @@
 import { createContext } from "react"
 
-export interface IDialogContext {
+export type IDialogContextType = {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const DialogContext = createContext<IDialogContext>({
+export const DialogContext = createContext<IDialogContextType>({
   isOpen: false,
   setIsOpen: () => {},
 })

@@ -1,6 +1,12 @@
-import { get } from "./serviceBase.ts"
 import type { ISubCategory } from "../models/ISubCategory.ts"
+import { supabase } from "../supabase-client.ts"
 
 export const getSubCategories = async () => {
-  return await get<ISubCategory[]>(`http://localhost:3000/subcategory`)
+  const { error, data } = await supabase.from("subcategories").select("*")
+
+  if (error) {
+    console.log("Error fetching subcategories: " + error)
+    return
+  }
+  return (data as ISubCategory[]) || null
 }
