@@ -4,6 +4,7 @@ import type { LoaderFunctionArgs } from "react-router"
 import { getAds } from "../services/adService"
 import type { IRegion } from "../models/IReagion"
 import type { ICategory } from "../models/ICategory"
+import { slugify } from "../utils/stringUtils"
 
 export type AdsLoader = {
   ads: IAd[]
@@ -14,37 +15,29 @@ export const adsLoader = async ({
   request,
 }: LoaderFunctionArgs): Promise<AdsLoader> => {
   const url = new URL(request.url)
-  const region = params.region
-  const category = params.category
-  const searchText = url.searchParams.get("searchText")
+  const regionSlug = params.region
+  const categorySlug = params.category
+  const searchText = url.searchParams.get("searchText") ?? undefined
 
-  const regions = JSON.parse(sessionStorage.get("regions") || []) as IRegion[]
+  let regionId: string | undefined
+  let categoryId: string | undefined
+
+  const regions = JSON.parse(
+    sessionStorage.getItem("regions") || "[]"
+  ) as IRegion[]
   const categories = JSON.parse(
-    sessionStorage.get("categories") || []
+    sessionStorage.getItem("categories") || "[]"
   ) as ICategory[]
-  let getAdsParams = ""
 
-  if (region) {
-    const regionId = regions.find((r) => r.name.toLowerCase() === region)?.id
-    if (regionId !== undefined) {
-      getAdsParams = regionId
-    }
+  if (regionSlug) {
+    regionId = regions.find((r) => slugify(r.name) === regionSlug)?.id
   }
 
-  if (category) {
-    const categoryId = categories.find(
-      (c) => c.name.toLowerCase() === category
-    )?.id
-    if (categoryId !== undefined) {
-      getAdsParams += `,${categoryId}`
-    }
+  if (categorySlug) {
+    categoryId = categories.find((c) => slugify(c.name) === categorySlug)?.id
   }
 
-  if (searchText) {
-    getAdsParams += `,${searchText}`
-  }
-
-  const ads = (await getAds(getAdsParams)) || []
+  const ads = (await getAds(regionId, categoryId, searchText)) || []
 
   return { ads }
 }

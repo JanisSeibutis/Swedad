@@ -6,6 +6,7 @@ import { Checkmark } from "../Icons/Checkmark"
 import { FindAds } from "../Buttons/FindAds"
 import { useNavigate } from "react-router"
 import type { IRegion } from "../../models/IReagion"
+import { slugify } from "../../utils/stringUtils"
 
 export const SearchAdsForm = () => {
   const [isActive, setIsActive] = useState(false)
@@ -14,11 +15,18 @@ export const SearchAdsForm = () => {
     id: "",
     name: "",
   })
+
   const navigate = useNavigate()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    navigate(`/ads?region=${region.id}`)
+    const regionSlug = slugify(region.name)
+
+    const path = search
+      ? `/ads/${regionSlug}?searchText=${encodeURIComponent(search)}`
+      : `/ads/${regionSlug}`
+
+    navigate(path)
   }
 
   return (

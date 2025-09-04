@@ -5,7 +5,7 @@ export const getCategory = async () => {
   const { error, data } = await supabase.from("categories").select("*")
 
   if (error) {
-    console.log("Error fetching categories: " + error)
+    console.log("Error fetching categories:", error)
     return
   }
   return (data as ICategory[]) || null

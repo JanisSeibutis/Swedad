@@ -5,7 +5,7 @@ export const getSubCategories = async () => {
   const { error, data } = await supabase.from("subcategories").select("*")
 
   if (error) {
-    console.log("Error fetching subcategories: " + error)
+    console.log("Error fetching subcategories:", error)
     return
   }
   return (data as ISubCategory[]) || null

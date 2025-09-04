@@ -2,7 +2,7 @@ import type { IAd } from "../models/IAd"
 import { supabase } from "../supabase-client"
 
 export const getAds = async (
-  regionId: string,
+  regionId?: string,
   categoryId?: string,
   searchText?: string
 ) => {
@@ -18,7 +18,7 @@ export const getAds = async (
   const { error, data } = await query
 
   if (error) {
-    console.log("Error fetching subcategories: " + error)
+    console.log("Error fetching subcategories:", error)
     return
   }
   return (data as IAd[]) || null
