@@ -123,8 +123,12 @@ dialog {
   flex: 0 0 50%;
   height: 50%;
   break-inside: avoid;
-  margin-bottom: 0.25rem;
+  padding-bottom: 0.75rem;
   text-align: left;
+}
+
+.special-list {
+  padding: 0;
 }
 
 .sub-list {
