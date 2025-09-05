@@ -37,7 +37,7 @@ export const router = createBrowserRouter(
           path: "annonser",
           children: [
             {
-              path: "create-ad",
+              path: "skapa-annons",
               element: <CreateAd />,
             },
             {
