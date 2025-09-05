@@ -1,10 +1,15 @@
 import { Navigation } from "./Navigation"
 import { Footer } from "./Footer"
 import { Main } from "./MainContent"
+import { useState } from "react"
+import { SelectedRegionContext } from "../contexts/SelectedRegionContext"
 
 export const Layout = () => {
+  const [selectedRegion, setSelectedRegion] = useState("")
   return (
-    <>
+    <SelectedRegionContext.Provider
+      value={{ selectedRegion, setSelectedRegion }}
+    >
       <header>
         <Navigation />
       </header>
@@ -14,6 +19,6 @@ export const Layout = () => {
       <footer>
         <Footer />
       </footer>
-    </>
+    </SelectedRegionContext.Provider>
   )
 }
