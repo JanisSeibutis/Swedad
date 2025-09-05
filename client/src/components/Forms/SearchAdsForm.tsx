@@ -1,26 +1,23 @@
-import { useState, type FormEvent } from "react"
+import { useContext, useState, type FormEvent } from "react"
 import { SearchIcon } from "../Icons/SearchIcon"
 import { RegionSelectContainer } from "../RegionSelectContainer"
 import "./SearchAdsForm.css"
 import { Checkmark } from "../Icons/Checkmark"
 import { FindAds } from "../Buttons/FindAds"
 import { useNavigate } from "react-router"
-import type { IRegion } from "../../models/IReagion"
-import { slugify } from "../../utils/stringUtils"
+import { SelectedRegionContext } from "../../contexts/SelectedRegionContext"
+import { slugifiedSelectedRegion } from "../../utils/selectedRegion"
 
 export const SearchAdsForm = () => {
   const [isActive, setIsActive] = useState(false)
   const [search, setSearch] = useState("")
-  const [region, setRegion] = useState<IRegion>({
-    id: "",
-    name: "",
-  })
+  const { setSelectedRegion } = useContext(SelectedRegionContext)
+  const regionSlug = slugifiedSelectedRegion()
 
   const navigate = useNavigate()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const regionSlug = slugify(region.name)
 
     const path = search
       ? `/annonser/${regionSlug}?searchText=${encodeURIComponent(search)}`
@@ -46,7 +43,7 @@ export const SearchAdsForm = () => {
           </div>
           <span className="search">Välj plats</span>
           <div className="regioninput-wrap">
-            <RegionSelectContainer setRegion={setRegion} />
+            <RegionSelectContainer setSelectedRegion={setSelectedRegion} />
           </div>
           <span className="search">Eller hitta saker som kan skickas</span>
           <div className="shipping">

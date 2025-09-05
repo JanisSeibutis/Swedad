@@ -1,11 +1,15 @@
 import "./Iconbar.css"
 
-export const Iconbar = () => {
+type AdsProps = {
+  selectedRegion: string
+}
+
+export const Iconbar = ({ selectedRegion }: AdsProps) => {
   return (
     <>
       <div className="iconbar-wrap">
         <div className="nav-icon-wrap">
-          <a href="" className="nav-icon">
+          <a href={`/annonser/${selectedRegion}`} className="nav-icon">
             <svg
               viewBox="0 0 32 32"
               xmlns="http://www.w3.org/2000/svg"

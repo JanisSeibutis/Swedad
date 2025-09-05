@@ -1,13 +1,12 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 import { useFetchCategoriesReagions } from "../hooks/useFetchCategoriesReagions"
 import { RegionSelect } from "./RegionSelect"
-import type { IRegion } from "../models/IReagion"
 
 type Props = {
-  setRegion: Dispatch<SetStateAction<IRegion>>
+  setSelectedRegion: Dispatch<SetStateAction<string>>
 }
 
-export const RegionSelectContainer = ({ setRegion }: Props) => {
+export const RegionSelectContainer = ({ setSelectedRegion }: Props) => {
   const { regions } = useFetchCategoriesReagions()
 
   const defaultRegionId = import.meta.env.VITE_DEFAULT_REGION_ID
@@ -30,8 +29,8 @@ export const RegionSelectContainer = ({ setRegion }: Props) => {
 
   useEffect(() => {
     const selectedRegion = regions.find((r) => r.id === selected)
-    if (selectedRegion) setRegion(selectedRegion)
-  }, [selected, regions, setRegion])
+    if (selectedRegion) setSelectedRegion(selectedRegion.id)
+  }, [selected, regions, setSelectedRegion])
 
   return (
     <RegionSelect
