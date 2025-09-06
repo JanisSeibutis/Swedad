@@ -65,8 +65,8 @@
   width: 2rem;
   height: 2rem;
   padding: 1rem;
-  border-radius: 45%; /* same as before */
-  overflow: hidden; /* prevents image from being cut outside corners */
+  border-radius: 45%;
+  overflow: hidden;
   background-color: #fff;
   display: flex;
   align-items: center;

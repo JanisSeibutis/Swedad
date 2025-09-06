@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <>
-      <h3>Footer</h3>
+      <h3 style={{ color: "black", height: "3rem" }}>Footer</h3>
     </>
   )
 }
