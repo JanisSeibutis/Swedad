@@ -42,7 +42,7 @@ export const router = createBrowserRouter(
               element: <CreateAd />,
             },
             {
-              path: ":region/:category?",
+              path: ":region/:category?/:subcategory?",
               loader: adsLoader,
               element: <Ads />,
             },

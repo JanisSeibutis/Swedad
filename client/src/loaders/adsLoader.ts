@@ -5,6 +5,7 @@ import { getAds } from "../services/adService"
 import type { IRegion } from "../models/IReagion"
 import type { ICategory } from "../models/ICategory"
 import { slugify } from "../utils/stringUtils"
+import type { ISubCategory } from "../models/ISubCategory"
 
 export type AdsLoader = {
   ads: IAd[]
@@ -17,10 +18,12 @@ export const adsLoader = async ({
   const url = new URL(request.url)
   const regionSlug = params.region
   const categorySlug = params.category
+  const subCategorySlug = params.subcategory
   const searchText = url.searchParams.get("searchText") ?? undefined
 
   let regionId: string | undefined
   let categoryId: string | undefined
+  let subCategoryId: string | undefined
 
   const regions = JSON.parse(
     sessionStorage.getItem("regions") || "[]"
@@ -28,6 +31,10 @@ export const adsLoader = async ({
   const categories = JSON.parse(
     sessionStorage.getItem("categories") || "[]"
   ) as ICategory[]
+
+  const subCategories = JSON.parse(
+    sessionStorage.getItem("subCategories") || "[]"
+  ) as ISubCategory[]
 
   if (regionSlug) {
     regionId = regions.find((r) => slugify(r.name) === regionSlug)?.id
@@ -37,7 +44,15 @@ export const adsLoader = async ({
     categoryId = categories.find((c) => slugify(c.name) === categorySlug)?.id
   }
 
-  const ads = (await getAds(regionId, categoryId, searchText)) || []
+  console.log(categoryId)
 
+  if (subCategorySlug) {
+    subCategoryId = subCategories.find(
+      (sc) => slugify(sc.name) === subCategorySlug
+    )?.id
+  }
+
+  const ads =
+    (await getAds(regionId, categoryId, subCategoryId, searchText)) || []
   return { ads }
 }

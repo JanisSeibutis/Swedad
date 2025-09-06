@@ -4,11 +4,14 @@ import { supabase } from "../supabase-client"
 export const getAds = async (
   regionId?: string,
   categoryId?: string,
+  subCategoryId?: string,
   searchText?: string
 ) => {
   let query = supabase.from("ads").select("*").eq("regionId", regionId)
 
   if (categoryId) query = query.eq("categoryId", categoryId)
+
+  if (subCategoryId) query = query.eq("subCategoryId", subCategoryId)
 
   if (searchText)
     query = query.or(

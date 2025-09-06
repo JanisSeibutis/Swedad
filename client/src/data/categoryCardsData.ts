@@ -13,39 +13,50 @@ export const categoryCards: Card[] = [
   {
     imageSrc: FordonIcon,
     text: "Fordon",
+    category: "fordon",
   },
   {
     imageSrc: KladerIcon,
-    text: "Kläder & skor",
+    text: "Kläder skor",
+    category: "personligt",
+    subCategory: "kläder skor",
   },
   {
     imageSrc: BostadIcon,
     text: "Bostad",
+    category: "bostad",
   },
   {
     imageSrc: ForHemmetIcon,
     text: "För hemmet",
+    category: "för hemmet",
   },
   {
     imageSrc: BarnkladerIcon,
     text: "Barnkläder",
     className: "special-1",
+    category: "personligt",
+    subCategory: "barnkläder skor",
   },
   {
     imageSrc: PersonligtIcon,
     text: "Personligt",
+    category: "personligt",
   },
   {
     imageSrc: ElektronikIcon,
     text: "Elektronik",
+    category: "elektronik",
   },
   {
     imageSrc: FritidIcon,
-    text: "Fritid & hobby",
+    text: "Fritid hobby",
+    category: "fritid hobby",
   },
   {
     imageSrc: NybegagnadIcon,
     text: "Nybegagnad elektronik",
     className: "special-2",
+    category: "",
   },
 ]

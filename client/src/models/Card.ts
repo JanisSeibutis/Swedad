@@ -6,4 +6,6 @@ export type Card = {
   currency?: string
   subtext?: string
   className?: string
+  category?: string
+  subCategory?: string
 }

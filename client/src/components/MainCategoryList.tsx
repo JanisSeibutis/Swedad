@@ -1,6 +1,7 @@
 import { slugifiedSelectedRegion } from "../utils/selectedRegion"
 import { categoryCards } from "../data/categoryCardsData"
 import "../components/CategoryPicker.css"
+import { slugify } from "../utils/stringUtils"
 
 export const MainCategoryList = () => {
   const regionSlug = slugifiedSelectedRegion()
@@ -15,9 +16,16 @@ export const MainCategoryList = () => {
         ]
           .join(" ")
           .trim()
+
+        let url = `/annonser/${regionSlug}`
+
+        if (c.category) url = `${url}/${slugify(c.category)}`
+
+        if (c.subCategory) url = `${url}/${slugify(c.subCategory)}`
+
         return (
           <li key={i} className={itemClass}>
-            <a href={`/${regionSlug}`} className="category-link">
+            <a href={url} className="category-link">
               <div className="category-image-wrapper">
                 <img
                   src={c.imageSrc}
