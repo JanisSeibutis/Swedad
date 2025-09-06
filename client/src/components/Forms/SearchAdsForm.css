@@ -1,7 +1,8 @@
 .hero-wrap {
-  height: 20rem;
+  height: 20.5rem;
   margin: 0.75rem 0;
   padding: 0.5rem;
+  padding-top: 0;
 }
 
 .search-form {
@@ -120,6 +121,7 @@
     margin: 0.75rem auto;
     padding: 1rem;
     width: 59.25rem;
+    height: 23rem;
   }
 
   .search-form {
