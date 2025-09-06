@@ -9,6 +9,7 @@ import { Ad } from "./pages/Ad"
 import { adsLoader } from "./loaders/adsLoader"
 import { adLoader } from "./loaders/adLoader"
 import { CreateAd } from "./pages/CreateAd/CreateAd"
+import { AllCategories } from "./pages/AllCategories"
 
 export const router = createBrowserRouter(
   [
@@ -56,6 +57,10 @@ export const router = createBrowserRouter(
               element: <Ad />,
             },
           ],
+        },
+        {
+          path: "/kategorier",
+          element: <AllCategories />,
         },
         {
           path: "/user",
