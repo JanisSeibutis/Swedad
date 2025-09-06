@@ -9,8 +9,8 @@ export const ForetagsInfo = () => {
       height="32"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M18.906 4.387L30.874 1.18l-3.207 11.97-3.703-3.705-9.76 9.761-1.414-1.414 9.76-9.761-3.644-3.644zm9.141-.377L22.77 5.424l3.863 3.864 1.414-5.278z"
         fill="currentColor"
       />
