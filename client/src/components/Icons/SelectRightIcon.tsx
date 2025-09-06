@@ -1,6 +1,10 @@
-export const SelectRightIcon = () => {
+type SelectRightIconProps = {
+  margin?: string
+}
+export const SelectRightIcon = ({ margin }: SelectRightIconProps) => {
   return (
     <svg
+      style={{ marginLeft: margin }}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 640"
       className="chevron-right"
