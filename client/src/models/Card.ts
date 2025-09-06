@@ -5,4 +5,5 @@ export type Card = {
   price?: number
   currency?: string
   subtext?: string
+  className?: string
 }
