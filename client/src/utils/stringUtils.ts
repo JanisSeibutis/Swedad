@@ -4,5 +4,5 @@ export const slugify = (str: string) =>
     .replace(/å/g, "a")
     .replace(/ä/g, "a")
     .replace(/ö/g, "o")
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9-_]/g, "")
